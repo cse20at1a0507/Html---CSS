@@ -1,0 +1,68 @@
+:root {
+  --bg-pos-x: 0;
+  --animation-duration: 20s;
+  --bg-size-x: 20em;
+}
+/* I can't use tailwind.config.js in CodePen, so I add my classes */
+.leading-huge-text {
+  line-height: 0.9;
+}
+.grid-rows-min {
+  grid-template-rows: repeat(auto-fill, min-content);
+}
+.current-color {
+  accent-color: rgba(130, 221, 53, 1);
+}
+/* corresponds to tailwind md size */
+@media (max-width: 768px) {
+  .current-color {
+    accent-color: rgba(235, 174, 15, 1);
+  }
+}
+.bg-rainbow {
+  background-size: var(--bg-size-x) 100%;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 154, 0, 1) 10%,
+    rgba(208, 222, 33, 1) 20%,
+    rgba(79, 220, 74, 1) 30%,
+    rgba(63, 218, 216, 1) 40%,
+    rgba(47, 201, 226, 1) 50%,
+    rgba(28, 127, 238, 1) 60%,
+    rgba(95, 21, 242, 1) 70%,
+    rgba(186, 12, 248, 1) 80%,
+    rgba(251, 7, 217, 1) 90%,
+    rgba(255, 0, 0, 1) 100%
+  );
+}
+.animate-hue {
+  animation: animate-hue var(--animation-duration) infinite linear;
+}
+.animate-bg {
+  animation: animate-bg var(--animation-duration) infinite linear;
+}
+@keyframes animate-bg {
+  from {
+    background-position: calc(var(--bg-pos-x) * var(--text-w)) 0;
+  }
+  to {
+    background-position: calc(
+        100% - var(--text-w) + calc(var(--bg-pos-x) * var(--text-w))
+      )
+      0;
+  }
+}
+@keyframes animate-hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+::-webkit-slider-runnable-track {
+  background: #f1f1f1;
+  border-radius: 1rem;
+  padding: 0.1rem 0.2rem;
+}
